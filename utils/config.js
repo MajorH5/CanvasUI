@@ -13,5 +13,8 @@ export const Config = (function () {
         SPRITE_SIZE: new Vector2(8, 8),
         DEBUG_MODE: true,
         MOBILE_ENVIRONMENT: isMobile,
+        DEFAULT_CANVAS_SIZE: new Vector2(800, 600),
+        SCROLL_RATE: 48,
+        SCROLL_INTERPOLATION_SPEED: 0.53
     }
 })();

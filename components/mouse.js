@@ -7,13 +7,14 @@ export const Mouse = (function () {
         // creates a new mouse object
         constructor (domElement, touch = null) {
             this.element = domElement;
-            this.position = new Vector2(0, 0);
+            this.position = new Vector2(-1, -1);
             this.lastPosition = new Vector2(0, 0);
 
             this.lastDown = false;
             this.down = false;
             this.up = false;
             this.identifier = null;
+            this.hit = null;
             this.scroll = 0;
 
             this.heldObjects = new Map();
@@ -26,8 +27,10 @@ export const Mouse = (function () {
             if (touch !== null) {
                 this.identifier = touch.identifier;
                 this.down = true;
-                this.position.x = touch.clientX;
-                this.position.y = touch.clientY;
+
+                const position = this.normalizePosition(touch.clientX, touch.clientY);
+                this.position.x = position.x;
+                this.position.y = position.y;
             }
 
             this.setupEvents();
@@ -136,6 +139,16 @@ export const Mouse = (function () {
                 });
     
                 this.element.addEventListener("mouseup", (e) => {
+                    if (e.button === 0) {
+                        this.down = false;
+                    }
+
+                    this.mouseUp.trigger(this.position, this);
+                    e.stopPropagation(); // absorb
+                });
+
+                document.addEventListener('mouseup', (e) => {
+                    // duplicate incase the mouseup event is not triggered
                     if (e.button === 0) {
                         this.down = false;
                     }

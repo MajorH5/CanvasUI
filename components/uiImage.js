@@ -39,8 +39,11 @@ export const UIImage = (function () {
 
         // renders the image to the screen
         renderImage (context, screenSize) {
-            this.sprite.setPosition(this.getScreenPosition(screenSize));
-            this.sprite.setSize(this.getScreenSize(screenSize));
+            const objectPosition = this.getScreenPosition(screenSize);
+            const objectSize = this.getScreenSize(screenSize);
+            
+            this.sprite.setPosition(objectPosition);
+            this.sprite.setSize(objectSize);
             this.sprite.render(context, Vector2.zero, 1);
         }
     }
