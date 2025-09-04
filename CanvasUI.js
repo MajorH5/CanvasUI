@@ -1,9 +1,9 @@
-import { Vector2 } from "../utils/vector2.js";
+import { Vector2 } from "./utils/vector2.js";
 // import { Sounds } from "../assets/sounds.js";
-import { UITextBox } from "./uiTextBox.js";
-import { Mouse } from "./mouse.js";
-import { Config } from "../utils/config.js";
-import { UIBase } from "./uiBase.js";
+import { UITextBox } from "./components/uiTextBox.js";
+import { Mouse } from "./components/mouse.js";
+import { Config } from "./utils/config.js";
+import { UIBase } from "./components/uiBase.js";
 
 export const CanvasUI = (function () {
     return class CanvasUI {

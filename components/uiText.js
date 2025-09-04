@@ -4,28 +4,28 @@ import { UIBase } from "./uiBase.js";
 
 export const UIText = (function () {
     return class UIText extends UIBase {
-        static FONT_MYRIADPRO_REGULAR = new FontFace('myriadpro',
-            `url(${Config.ORIGIN}/assets/fonts/myriadpro_regular.otf)`);
-        static FONT_MYRIADPRO_BOLD = new FontFace('myriadpro_bold',
-            `url(${Config.ORIGIN}/assets/fonts/myriadpro_bold.otf)`);
-        static FONT_MYRIADPRO_LIGHT = new FontFace('myriadpro_light',
-            `url(${Config.ORIGIN}/assets/fonts/myriadpro_light.otf)`);
+        // static FONT_MYRIADPRO_REGULAR = new FontFace('myriadpro',
+        //     `url(${Config.ORIGIN}/assets/fonts/myriadpro_regular.otf)`);
+        // static FONT_MYRIADPRO_BOLD = new FontFace('myriadpro_bold',
+        //     `url(${Config.ORIGIN}/assets/fonts/myriadpro_bold.otf)`);
+        // static FONT_MYRIADPRO_LIGHT = new FontFace('myriadpro_light',
+        //     `url(${Config.ORIGIN}/assets/fonts/myriadpro_light.otf)`);
 
-        static DEFAULT_FONT = "myriadpro";
+        static DEFAULT_FONT = "Arial";
 
-        static {
-            const fonts = [
-                UIText.FONT_MYRIADPRO_REGULAR,
-                UIText.FONT_MYRIADPRO_BOLD,
-                UIText.FONT_MYRIADPRO_LIGHT
-            ];
+        // static {
+        //     const fonts = [
+        //         UIText.FONT_MYRIADPRO_REGULAR,
+        //         UIText.FONT_MYRIADPRO_BOLD,
+        //         UIText.FONT_MYRIADPRO_LIGHT
+        //     ];
 
-            fonts.forEach(font => {
-                font.load().then(font => {
-                    document.fonts.add(font);
-                });
-            });
-        }
+        //     fonts.forEach(font => {
+        //         font.load().then(font => {
+        //             document.fonts.add(font);
+        //         });
+        //     });
+        // }
 
         // creates a new UI text object
         constructor (text, options) {
