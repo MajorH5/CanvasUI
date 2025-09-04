@@ -11,7 +11,7 @@ export const Config = (function () {
     return {
         ORIGIN: origin,
         SPRITE_SIZE: new Vector2(8, 8),
-        DEBUG_MODE: true,
+        DEBUG_MODE: false,
         MOBILE_ENVIRONMENT: isMobile,
         DEFAULT_CANVAS_SIZE: new Vector2(800, 600),
         SCROLL_RATE: 48,

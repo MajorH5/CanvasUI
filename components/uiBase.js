@@ -295,6 +295,13 @@ export const UIBase = (function () {
                 context.stroke();
             }
             
+            if (Config.DEBUG_MODE) {
+                const size = this.getScreenSize(screenSize);
+                context.strokeStyle = 'red';
+                context.lineWidth = 2;
+                context.strokeRect(0, 0, size.x, size.y);
+            }
+
             context.closePath();                
 
             // if (this.scrollableY && this.canvasSize.y*2 > size.y) {
