@@ -20,6 +20,11 @@ export const UIImage = (function () {
             this.flippedVertical = options.flippedVertical || false;
         }
 
+        setSrc (imageSrc) {
+            this.src = imageSrc;
+            this.sprite = new Sprite(imageSrc);
+        }
+
         // updates the image
         update (deltaTime) {
             super.update(deltaTime);

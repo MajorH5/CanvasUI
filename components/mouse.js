@@ -67,6 +67,11 @@ export const Mouse = (function () {
         isInside (object) {
             return this.insideObjects.has(object);
         }
+        
+        // returns the delta from last position
+        getDelta () {
+            return this.position.subtract(this.lastPosition)
+        }
 
         // updates the mouse
         update () {
@@ -102,8 +107,8 @@ export const Mouse = (function () {
         // listens to mouse events on the given element
         setupEvents () {
             if (Config.MOBILE_ENVIRONMENT) {
-                document.addEventListener('touchmove', (event) => {
-                    const changedTouched = event.changedTouches;
+                document.addEventListener('touchmove', (e) => {
+                    const changedTouched = e.changedTouches;
 
                     for (let i = 0; i < changedTouched.length; i++) {
                         const touch = changedTouched[i];
@@ -118,16 +123,16 @@ export const Mouse = (function () {
                         this.position.y = position.y;
                     }
                     
-                    this.mouseMoved.trigger(this.position, this);
+                    this.mouseMoved.trigger(this.position, this, e);
                 });
             } else {
-                this.element.addEventListener("mousemove", (event) => {
-                    const position = this.normalizePosition(event.clientX, event.clientY);
+                this.element.addEventListener("mousemove", (e) => {
+                    const position = this.normalizePosition(e.clientX, e.clientY);
     
                     this.position.x = position.x;
                     this.position.y = position.y;
 
-                    this.mouseMoved.trigger(this.position, this);
+                    this.mouseMoved.trigger(this.position, this, e);
                 });
                 
                 this.element.addEventListener("mousedown", (e) => {
@@ -135,7 +140,7 @@ export const Mouse = (function () {
                         this.down = true;
                     }
 
-                    this.mouseDown.trigger(this.position, this);
+                    this.mouseDown.trigger(this.position, this, e);
                 });
     
                 this.element.addEventListener("mouseup", (e) => {
@@ -143,7 +148,7 @@ export const Mouse = (function () {
                         this.down = false;
                     }
 
-                    this.mouseUp.trigger(this.position, this);
+                    this.mouseUp.trigger(this.position, this), e;
                     e.stopPropagation(); // absorb
                 });
 
@@ -153,7 +158,7 @@ export const Mouse = (function () {
                         this.down = false;
                     }
 
-                    this.mouseUp.trigger(this.position, this);
+                    this.mouseUp.trigger(this.position, this, e);
                 });
             }
         }

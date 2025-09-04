@@ -37,6 +37,7 @@ export const UIBase = (function () {
             this.isModal = options.isModal || false;
             this.absorbsAllInput = options.absorbsAllInput || false;
 
+            this.isHeld = false;
             this.scrollHeld = false;
 
             this.canvasPosition = options.canvasPosition || Vector2.zero;
@@ -89,6 +90,8 @@ export const UIBase = (function () {
             });
 
             this.mouseDown.listen((position, mouse) => {
+                this.isHeld = true;
+
                 // listen for scroll wheel grab
                 if (!this.scrollableY || !this.isVisibleOnScreen(this.lastScreenSize, true)) {
                     return;
@@ -142,6 +145,10 @@ export const UIBase = (function () {
                     });
                 }
             });
+
+            this.mouseUp.listen(() => {
+                this.isHeld = false;
+            })
         }
 
         // clones this object
@@ -335,7 +342,7 @@ export const UIBase = (function () {
 
             context.beginPath();
             context.rect(scrollIndicatorPosition.x, scrollIndicatorPosition.y, scrollIndicatorSize.x, scrollIndicatorSize.y);
-            context.fillStyle = "#666666";
+            context.fillStyle = "#dadadaff";
             context.fill();
             context.closePath();
         }
@@ -356,10 +363,9 @@ export const UIBase = (function () {
 
 
         // returns true if the given point is inside the object
-        isPointInside (point, screenSize, useCanvasOffset = false) {
+        isPointInside (point, screenSize = this.lastScreenSize, useCanvasOffset = false) {
             const position = this.getScreenPosition(screenSize, useCanvasOffset);
             const size = this.getScreenSize(screenSize);
-            
             
             // TODO : slightly clipped objects are still
             // kind of clickable, below fix does not work

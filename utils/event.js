@@ -13,6 +13,12 @@ export const Event = (function () {
             }
 
             this.handlers.push(handler);
+            
+            return {
+                unlisten: () => {
+                    this.unlisten(handler);
+                }
+            }
         }
 
         listenOnce (handler) {
@@ -24,6 +30,12 @@ export const Event = (function () {
             };
 
             this.listen(onceHandler);
+
+             return {
+                unlisten: () => {
+                    this.unlisten(handler);
+                }
+            }
         }
 
         unlisten (handler) {
@@ -38,9 +50,15 @@ export const Event = (function () {
         trigger (...data) {
             // fires the event and calls all listening handlers
             // with the given data
-            for (let i = 0; i < this.handlers.length; i++){
+            for (let i = this.handlers.length - 1; i >= 0; i--){
+                const handler = this.handlers[i];
+
+                if (handler === undefined) {
+                    continue;
+                }
+
                 try {
-                    this.handlers[i](...data);
+                    handler(...data);
                 } catch (e) {
                     console.error(e);
                 }

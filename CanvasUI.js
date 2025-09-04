@@ -247,7 +247,7 @@ export const CanvasUI = (function () {
                 }
 
                 if (mouseScroll !== 0) {
-                    object.scrolled.trigger(mouseScroll);
+                    object.scrolled.trigger(mouseScroll, mouse);
                 }
             } else {
                 if (mouse.isInside(object)) {

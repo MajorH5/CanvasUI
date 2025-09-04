@@ -91,7 +91,6 @@ export const Sprite = (function () {
         // draws the sprite to the given context at the given position
         render (context, offset, scale) {
             if (this.image === null) {
-                console.warn('Render call failed, image not loaded!');
                 return;
             }
 
