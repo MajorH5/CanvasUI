@@ -222,7 +222,7 @@ export const CanvasUI = (function () {
             if (mouseIsInside) {
                 const visibleOnScreen = object.isVisibleOnScreen(screenSize, true);
 
-                if (object.clickable && visibleOnScreen) isOverClickable = ArtEditor.isModalOpen() ? object.belongsToModal() : true;
+                if (object.clickable && visibleOnScreen) isOverClickable = true;
 
                 if (mouseDown && !mouse.lastDown && !mouse.isHolding(object) && visibleOnScreen) {
                     // fire mouse down event
