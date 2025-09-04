@@ -1,4 +1,4 @@
-import { Event } from '../utils/vector2.js'
+import { Vector2 } from '../utils/vector2.js'
 import { Event } from '../utils/event.js'
 import { Config } from "../utils/config.js";
 

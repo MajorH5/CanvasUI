@@ -1,6 +1,6 @@
 import { Vector2 } from "../utils/vector2.js";
 import { Event } from "../utils/event.js";
-import { Config } from "../misc/config.js";
+import { Config } from "../utils/config.js";
 
 export const Mouse = (function () {
     return class Mouse {

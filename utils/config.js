@@ -1,4 +1,4 @@
-import { Vector2 } from "../PhysicsJS2D/src/vector2.js";
+import { Vector2 } from "../utils/vector2.js";
 
 export const Config = (function () {
     let origin = location.href;
@@ -11,7 +11,7 @@ export const Config = (function () {
     return {
         ORIGIN: origin,
         SPRITE_SIZE: new Vector2(8, 8),
-        DEBUG_MODE: false,
+        DEBUG_MODE: true,
         MOBILE_ENVIRONMENT: isMobile,
     }
 })();
